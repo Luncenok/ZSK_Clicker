@@ -1,16 +1,16 @@
-package mateusz.idziejczak.zskclicker.ui.gallery;
+package mateusz.idziejczak.zskclicker.ui.train_shop;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class TrainShopViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public TrainShopViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is train shop fragment");
     }
 
     public LiveData<String> getText() {

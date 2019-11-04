@@ -8,26 +8,26 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="mateusz.idziejczak.zskclicker.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="@string/menu_clicker"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="mateusz.idziejczak.zskclicker.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_upgrades"
+        android:name="mateusz.idziejczak.zskclicker.ui.upgrades.UpgradesFragment"
+        android:label="@string/menu_upgrades"
+        tools:layout="@layout/fragment_upgrades" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="mateusz.idziejczak.zskclicker.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_train_shop"
+        android:name="mateusz.idziejczak.zskclicker.ui.train_shop.TrainShopFragment"
+        android:label="@string/menu_train_shop"
+        tools:layout="@layout/fragment_train_shop" />
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="mateusz.idziejczak.zskclicker.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:name="mateusz.idziejczak.zskclicker.ui.coal_shop.CoalShopFragment"
+        android:label="@string/menu_coal_shop"
+        tools:layout="@layout/fragment_coal_shop" />
 
     <fragment
         android:id="@+id/nav_share"

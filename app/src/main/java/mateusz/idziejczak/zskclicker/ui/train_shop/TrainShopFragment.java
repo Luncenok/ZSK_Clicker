@@ -1,4 +1,4 @@
-package mateusz.idziejczak.zskclicker.ui.tools;
+package mateusz.idziejczak.zskclicker.ui.train_shop;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import mateusz.idziejczak.zskclicker.R;
 
-public class ToolsFragment extends Fragment {
+public class TrainShopFragment extends Fragment {
 
-    private ToolsViewModel toolsViewModel;
+    private TrainShopViewModel trainShopViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(ToolsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_tools, container, false);
-        final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, new Observer<String>() {
+        trainShopViewModel =
+                ViewModelProviders.of(this).get(TrainShopViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_train_shop, container, false);
+        final TextView textView = root.findViewById(R.id.text_slideshow);
+        trainShopViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
