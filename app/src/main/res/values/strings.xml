@@ -1,9 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ZSK Clicker</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">ZSK Clicker</string>
-    <string name="nav_header_subtitle">click click click…</string>
+    <string name="nav_header_subtitle" tools:ignore="Typos">click click click…</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -13,4 +13,8 @@
     <string name="menu_coal_shop">Coal Shop</string>
     <string name="menu_share">Share app</string>
     <string name="menu_send">Send feedback</string>
+    <string name="coal">Coal</string>
+    <string name="coal_tank">Coal Tank</string>
+    <string name="tank">Tank</string>
+    <string name="train">Train</string>
 </resources>
