@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ZSK Clicker</string>
+    
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">ZSK Clicker</string>
@@ -13,8 +14,15 @@
     <string name="menu_coal_shop">Coal Shop</string>
     <string name="menu_share">Share app</string>
     <string name="menu_send">Send feedback</string>
+    
     <string name="coal">Coal</string>
     <string name="coal_tank">Coal Tank</string>
     <string name="tank">Tank</string>
     <string name="train">Train</string>
+    
+    <string name="preference_file_key">mateusz.idziejczak.zskclicker.PREFERENCE_FILE_KEY</string>
+    <string name="preference_first_time_key">mateusz.idziejczak.zskclicker.PREFERENCE_FIRST_TIME_KEY</string>
+    <string name="saved_coins_key">mateusz.idziejczak.zskclicker.SAVED_COINS_KEY</string>
+    <string name="saved_train_key">mateusz.idziejczak.zskclicker.SAVED_TRAIN_KEY</string>
+    <string name="saved_tank_train_key">mateusz.idziejczak.zskclicker.SAVED_TANK_TRAIN_KEY</string>
 </resources>

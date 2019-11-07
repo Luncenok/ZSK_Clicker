@@ -1,60 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/text_home"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="coins: 0"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_home_2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:text="cps: 0"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutKlikania"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_home">
 
-        <ImageView
-            android:id="@+id/trainHomeIV"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fullTrain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="36dp"
             android:background="@drawable/border"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_train_svgrepo_com"
-            android:contentDescription="@string/train" />
-
-        <ImageView
-            android:id="@+id/tankHomeIV"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_tank_train_svgrepo_com"
-            android:contentDescription="@string/tank" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/trainHomeIV"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/train"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tankHomeIV"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_train_svgrepo_com" />
+
+            <ImageView
+                android:id="@+id/tankHomeIV"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/tank"
+                app:layout_constraintEnd_toStartOf="@+id/trainHomeIV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_tank_train_svgrepo_com" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/coalTankHomeIV"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="44dp"
+            android:contentDescription="@string/coal_tank"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/trainHomeIV"
-            app:srcCompat="@drawable/ic_coal_svgrepo_com_4"
-            android:contentDescription="@string/coal_tank" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullTrain"
+            app:srcCompat="@drawable/ic_coal_svgrepo_com_4" />
 
         <ImageView
             android:id="@+id/coalHome2IV"
@@ -62,11 +87,11 @@
             android:layout_height="50dp"
             android:layout_marginStart="96dp"
             android:layout_marginTop="100dp"
+            android:contentDescription="@string/coal"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/coalTankHomeIV"
             app:layout_constraintTop_toTopOf="@+id/coalTankHomeIV"
-            app:srcCompat="@drawable/ic_coal_svgrepo_com"
-            android:contentDescription="@string/coal" />
+            app:srcCompat="@drawable/ic_coal_svgrepo_com" />
 
         <ImageView
             android:id="@+id/coalHome3IV"
@@ -74,11 +99,11 @@
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="52dp"
+            android:contentDescription="@string/coal"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/coalTankHomeIV"
             app:layout_constraintTop_toTopOf="@+id/coalTankHomeIV"
-            app:srcCompat="@drawable/ic_coal_svgrepo_com"
-            android:contentDescription="@string/coal" />
+            app:srcCompat="@drawable/ic_coal_svgrepo_com" />
 
         <ImageView
             android:id="@+id/coalHomeIV"
@@ -86,11 +111,25 @@
             android:layout_height="50dp"
             android:layout_marginStart="108dp"
             android:layout_marginTop="36dp"
+            android:contentDescription="@string/coal"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/coalTankHomeIV"
             app:layout_constraintTop_toTopOf="@+id/coalTankHomeIV"
-            app:srcCompat="@drawable/ic_coal_svgrepo_com"
-            android:contentDescription="@string/coal" />
+            app:srcCompat="@drawable/ic_coal_svgrepo_com" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:max="2000"
+            android:progressTint="#FF000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/coalTankHomeIV" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

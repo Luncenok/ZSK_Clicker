@@ -10,7 +10,7 @@ public class TrainShopViewModel extends ViewModel {
 
     public TrainShopViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is train shop fragment");
+        mText.setValue("Here, you can buy some other trains");
     }
 
     public LiveData<String> getText() {

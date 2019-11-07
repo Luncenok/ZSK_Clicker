@@ -1,5 +1,7 @@
 package mateusz.idziejczak.zskclicker;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.navigation.NavController;
@@ -26,6 +28,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        boolean firstTime = sharedPreferences.getBoolean(getString(R.string.preference_first_time_key), true);
+        if(firstTime){
+            editor.putInt(getString(R.string.saved_coins_key), 0);
+            editor.putInt(getString(R.string.saved_train_key), 1);
+            editor.putInt(getString(R.string.saved_tank_train_key), 1);
+            editor.putBoolean(getString(R.string.preference_first_time_key), false);
+            editor.apply();
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
