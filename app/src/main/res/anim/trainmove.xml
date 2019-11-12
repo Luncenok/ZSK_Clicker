@@ -4,24 +4,24 @@
     <translate
         android:fromXDelta="0%p"
         android:fromYDelta="0%p"
-        android:toXDelta="-8%p"
+        android:toXDelta="80%p"
         android:toYDelta="0%p"
         android:duration="200" />
 
     <translate
-        android:fromXDelta="-8%p"
+        android:fromXDelta="80%p"
         android:fromYDelta="0%p"
-        android:toXDelta="8%p"
+        android:toXDelta="-80%p"
         android:toYDelta="0%p"
         android:startOffset="200"
-        android:duration="400" />
+        android:duration="1" />
 
     <translate
-        android:fromXDelta="8%p"
+        android:fromXDelta="-80%p"
         android:fromYDelta="0%p"
         android:toXDelta="0%p"
         android:toYDelta="0%p"
-        android:startOffset="600"
+        android:startOffset="201"
         android:duration="200" />
 
 </set>
