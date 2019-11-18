@@ -27,9 +27,8 @@ import mateusz.idziejczak.zskclicker.R;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    private Animation animation, animation2, animation3, animationTrain;
-    private int clicks = 0, delay = 1000, coins;
-    private long cps = 0, cpc = 1, secondsBonus;
+    private Animation animation, animation2, animation3, animationTrain, animationBucket;
+    private int clicks = 0, delay = 1000, coins, trainNumber, cps = 0, cpc = 1, secondsBonus;
     private SharedPreferences.Editor editor;
     private SharedPreferences sharedPref;
 
@@ -42,29 +41,47 @@ public class HomeFragment extends Fragment {
         final TextView cpsTV = root.findViewById(R.id.text_home_2);
         final ProgressBar progressBar = root.findViewById(R.id.progressBar);
         final ConstraintLayout klikerLayout = root.findViewById(R.id.layoutKlikania);
-        final ImageView coalTankIV = root.findViewById(R.id.coalTankHomeIV);
-        final ImageView tankIV = root.findViewById(R.id.tankHomeIV);
-        final ImageView trainIV = root.findViewById(R.id.trainHomeIV);
-        final ImageView coalIV = root.findViewById(R.id.coalHomeIV);
-        final ImageView railsIV = root.findViewById(R.id.railsIV);
-        railsIV.setColorFilter(Color.rgb(140,140,140));
+        final ImageView
+                coalTankIV = root.findViewById(R.id.coalTankHomeIV),
+                tankIV = root.findViewById(R.id.tankHomeIV),
+                trainIV = root.findViewById(R.id.trainHomeIV),
+                coalIV = root.findViewById(R.id.coalHomeIV),
+                railsIV = root.findViewById(R.id.railsIV),
+                bucketIV = root.findViewById(R.id.bucketHomeIV),
+                coal2IV = root.findViewById(R.id.coalHome2IV),
+                coal3IV = root.findViewById(R.id.coalHome3IV);
+        final Context context = getActivity();
+
+        bucketIV.setColorFilter(Color.rgb(21, 21, 150));
+        railsIV.setColorFilter(Color.rgb(195,195,195));
         trainIV.setColorFilter(Color.rgb(56, 31, 0));
         tankIV.setColorFilter(Color.rgb(56, 31, 0));
-        final ImageView coal2IV = root.findViewById(R.id.coalHome2IV);
-        final ImageView coal3IV = root.findViewById(R.id.coalHome3IV);
 
         animation = AnimationUtils.loadAnimation(getContext(), R.anim.wegielzaklik);
         animation2 = AnimationUtils.loadAnimation(getContext(), R.anim.wegielzaklik);
         animation3 = AnimationUtils.loadAnimation(getContext(), R.anim.wegielzaklik);
         animationTrain = AnimationUtils.loadAnimation(getContext(), R.anim.trainmove);
-
-        final Context context = getActivity();
+        animationBucket = AnimationUtils.loadAnimation(getContext(), R.anim.bucketanim);
         sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         coins = sharedPref.getInt(getString(R.string.saved_coins_key), 1);
         clicks = sharedPref.getInt(getString(R.string.saved_clicks_key), 0);
-        int trainNumber = sharedPref.getInt(getString(R.string.saved_train_key), 1);
+        trainNumber = sharedPref.getInt(getString(R.string.saved_train_key), 1);
         cpc = sharedPref.getInt(getString(R.string.saved_cpc_key), 1);
+
+        //TODO: Przed wydaniem zamienić tutaj
+        if (clicks % 5 == 2/*400*/) {
+            trainIV.setColorFilter(Color.rgb(130, 73, 1));
+            tankIV.setColorFilter(Color.rgb(130, 73, 1));
+        } else if (clicks % 5 == 3/*450*/) {
+            trainIV.setColorFilter(Color.rgb(151, 71, 3));
+            tankIV.setColorFilter(Color.rgb(151, 71, 3));
+        } else if (clicks % 5 == 4/*499*/) {
+            trainIV.setColorFilter(Color.rgb(194, 55, 0));
+            tankIV.setColorFilter(Color.rgb(194, 55, 0));
+            cpc = 0;
+        }
+
         progressBar.setProgress(clicks);
         progressBar.getProgressDrawable().setColorFilter(
                 getResources().getColor(R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
@@ -91,34 +108,48 @@ public class HomeFragment extends Fragment {
                         coal3IV.setVisibility(View.VISIBLE);
                         coal3IV.startAnimation(animation3);
                     }
+
                     clicks++;
                     coins += cpc;
                     cps++;
+
                     editor.putInt(getString(R.string.saved_coins_key), coins).apply();
                     editor.putInt(getString(R.string.saved_clicks_key), clicks).apply();
                     coinsTV.setText(String.format(Locale.getDefault(), "coins: %d", coins));
                     progressBar.setProgress(clicks);
+
+                    //TODO: i tu też zamienić
+                    if (clicks % 5 == 2/*400*/) {
+                        trainIV.setColorFilter(Color.rgb(130, 73, 1));
+                        tankIV.setColorFilter(Color.rgb(130, 73, 1));
+                    } else if (clicks % 5 == 3/*450*/) {
+                        trainIV.setColorFilter(Color.rgb(151, 71, 3));
+                        tankIV.setColorFilter(Color.rgb(151, 71, 3));
+                    } else if (clicks % 5 == 4/*499*/) {
+                        trainIV.setColorFilter(Color.rgb(194, 55, 0));
+                        tankIV.setColorFilter(Color.rgb(194, 55, 0));
+                        cpc = 0;
+                    }
+
                 } else {
-                    Toast.makeText(context, "The train is overheated. Please wait 5 seconds until it cools", Toast.LENGTH_SHORT).show();
-                    delay = 1000;
+                    Toast.makeText(context, "The train is overheated. Please cool it with water bucket", Toast.LENGTH_SHORT).show();
+                    bucketIV.startAnimation(animationBucket);
                 }
 
-                if (clicks >= 500) {
-                    progressBar.setMax(1000);
-                    progressBar.setProgress(clicks);
-                }
-                if (clicks >= 1000) {
-                    progressBar.setMax(2000);
-                    progressBar.setProgress(clicks);
-                }
-                if (clicks >= 2000) {
-                    progressBar.setMax(4000);
-                    progressBar.setProgress(clicks);
-                }
-                if (clicks >= 4000) {
+                if (clicks >= progressBar.getMax()) {
                     progressBar.setMax(progressBar.getMax()*2);
+                    clicks=0;
                     progressBar.setProgress(clicks);
                 }
+            }
+        });
+
+        bucketIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trainIV.setColorFilter(Color.BLACK);
+                tankIV.setColorFilter(Color.BLACK);
+                cpc=1;
             }
         });
 
@@ -131,27 +162,6 @@ public class HomeFragment extends Fragment {
                 if (cps > 0) {
                     tankIV.startAnimation(animationTrain);
                     trainIV.startAnimation(animationTrain);
-                    secondsBonus++;
-                } else {
-                    secondsBonus = 0;
-                }
-
-                if (secondsBonus <= 0) {
-                    trainIV.setColorFilter(Color.rgb(56, 31, 0));
-                    tankIV.setColorFilter(Color.rgb(56, 31, 0));
-                    cpc = 1;
-                } else if (secondsBonus >= 5 && secondsBonus < 10) {
-                    trainIV.setColorFilter(Color.rgb(130, 73, 1));
-                    tankIV.setColorFilter(Color.rgb(130, 73, 1));
-                } else if (secondsBonus >= 10 && secondsBonus < 15) {
-                    trainIV.setColorFilter(Color.rgb(161, 71, 3));
-                    tankIV.setColorFilter(Color.rgb(161, 71, 3));
-                    cpc = 2;
-                } else if (secondsBonus >= 15) {
-                    delay = 5000;
-                    trainIV.setColorFilter(Color.rgb(194, 55, 0));
-                    tankIV.setColorFilter(Color.rgb(194, 55, 0));
-                    cpc = 0;
                 }
 
                 cps = 0;
@@ -165,18 +175,21 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPause() {
         editor.putInt(getString(R.string.saved_coins_key), coins).commit();
+        editor.putInt(getString(R.string.saved_clicks_key), clicks).commit();
         super.onPause();
     }
 
     @Override
     public void onStop() {
         editor.putInt(getString(R.string.saved_coins_key), coins).commit();
+        editor.putInt(getString(R.string.saved_clicks_key), clicks).commit();
         super.onStop();
     }
 
     @Override
     public void onDestroy() {
         editor.putInt(getString(R.string.saved_coins_key), coins).commit();
+        editor.putInt(getString(R.string.saved_clicks_key), clicks).commit();
         super.onDestroy();
     }
 }
