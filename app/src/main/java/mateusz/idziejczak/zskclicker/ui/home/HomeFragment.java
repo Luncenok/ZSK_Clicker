@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private Animation animation, animation2, animation3, animationTrain, animationBucket;
-    private int clicks = 0, delay = 1000, coins, trainNumber, cps = 0, cpc = 1, secondsBonus;
+    private int clicks = 0, delay = 1000, coins, trainNumber, cps = 0, cpc = 1, /*TODO*/overheatclicks=300;
     private SharedPreferences.Editor editor;
     private SharedPreferences sharedPref;
 
@@ -69,14 +69,13 @@ public class HomeFragment extends Fragment {
         trainNumber = sharedPref.getInt(getString(R.string.saved_train_key), 1);
         cpc = sharedPref.getInt(getString(R.string.saved_cpc_key), 1);
 
-        //TODO: Przed wydaniem zamienić tutaj
-        if (clicks % 5 == 2/*400*/) {
+        if (overheatclicks % 500 == 400) {
             trainIV.setColorFilter(Color.rgb(130, 73, 1));
             tankIV.setColorFilter(Color.rgb(130, 73, 1));
-        } else if (clicks % 5 == 3/*450*/) {
+        } else if (overheatclicks % 500 == 450) {
             trainIV.setColorFilter(Color.rgb(151, 71, 3));
             tankIV.setColorFilter(Color.rgb(151, 71, 3));
-        } else if (clicks % 5 == 4/*499*/) {
+        } else if (overheatclicks % 500 == 499) {
             trainIV.setColorFilter(Color.rgb(194, 55, 0));
             tankIV.setColorFilter(Color.rgb(194, 55, 0));
             cpc = 0;
@@ -110,6 +109,7 @@ public class HomeFragment extends Fragment {
                     }
 
                     clicks++;
+                    overheatclicks++;
                     coins += cpc;
                     cps++;
 
@@ -118,14 +118,13 @@ public class HomeFragment extends Fragment {
                     coinsTV.setText(String.format(Locale.getDefault(), "coins: %d", coins));
                     progressBar.setProgress(clicks);
 
-                    //TODO: i tu też zamienić
-                    if (clicks % 5 == 2/*400*/) {
+                    if (overheatclicks % 500 == 400) {
                         trainIV.setColorFilter(Color.rgb(130, 73, 1));
                         tankIV.setColorFilter(Color.rgb(130, 73, 1));
-                    } else if (clicks % 5 == 3/*450*/) {
+                    } else if (overheatclicks % 500 == 450) {
                         trainIV.setColorFilter(Color.rgb(151, 71, 3));
                         tankIV.setColorFilter(Color.rgb(151, 71, 3));
-                    } else if (clicks % 5 == 4/*499*/) {
+                    } else if (overheatclicks % 500 == 499) {
                         trainIV.setColorFilter(Color.rgb(194, 55, 0));
                         tankIV.setColorFilter(Color.rgb(194, 55, 0));
                         cpc = 0;
@@ -149,6 +148,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 trainIV.setColorFilter(Color.BLACK);
                 tankIV.setColorFilter(Color.BLACK);
+                overheatclicks=300;
                 cpc=1;
             }
         });
